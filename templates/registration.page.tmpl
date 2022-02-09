@@ -1,0 +1,84 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <img
+                src="/static/static/images/welcome.jpeg"
+                class="img-fluid img-thumbnail mx-auto d-block"
+                alt="Welcome"
+            />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{$res := index .Data "registrationData"}}
+
+            <h1 class="text-center mt-4">User Registration</h1>
+
+            <form method="POST" action="/registration" class="" novalidate>
+                <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+                <input type="hidden" name="access_lvl" value="1">
+
+                <div class="form-group mt-5">
+                    <label for="first_name">First name:</label>
+                    {{with .Form.Errors.Get "first_name"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input value="{{$res.FirstName}}" type="text" name="first_name" id="first_name" class="form-control {{with .Form.Errors.Get "first_name"}} is-invalid {{end}}" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last name:</label>
+                    {{with .Form.Errors.Get "last_name"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input value="{{$res.LastName}}" type="text" name="last_name" id="last_name" class="form-control {{with .Form.Errors.Get "last_name"}} is-invalid {{end}}" required autocomplete="off">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email_address">Email address:</label>
+                    {{with .Form.Errors.Get "email_address"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input value="{{$res.Email}}" type="email" name="email_address" id="email_address" class="form-control {{with .Form.Errors.Get "email_address"}} is-invalid {{end}}" required autocomplete="off">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone_number">Phone number:</label>
+                    {{with .Form.Errors.Get "phone_number"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input value="{{$res.Phone}}" type="text" name="phone_number" id="phone_number" class="form-control {{with .Form.Errors.Get "phone_number"}} is-invalid {{end}}" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="nick_name">User name:</label>
+                    {{with .Form.Errors.Get "nick_name"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input value="{{$res.UserName}}" type="text" name="nick_name" id="nick_name" class="form-control {{with .Form.Errors.Get "nick_name"}} is-invalid {{end}}" required autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    {{with .Form.Errors.Get "password"}}
+                        <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input value="{{$res.Passwd}}" type="password" name="password" id="password" class="form-control {{with .Form.Errors.Get "password"}} is-invalid {{end}}" required autocomplete="off">
+                </div>
+
+                <hr>
+
+                <input type="submit" class="btn btn-success" value="Get an account!">
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{{end}}

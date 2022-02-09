@@ -1,0 +1,49 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-2 text-center">
+      <img
+        src="/static/static/images/login.jpeg"
+        class="img-fluid img-thumbnail mx-auto d-block"
+        alt="Login"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-2">
+            {{$uData := index .Data "userData"}}
+            <h1 class="mt-2 text-center">Login</h1>
+            <form action="/user/login" method="POST" novalidate>
+                <input hidden type="text" name="csrf_token" value="{{.CSRFToken}}">
+                <div class="form-group mt-5">
+                    <label for="email">Email:</label>
+                    {{with .Form.Errors.Get "email"}}
+                    <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input value="{{$uData.Email}}" type="email" name="email" id="email"
+                        class="form-control {{with .Form.Errors.Get " email"}} is-invalid {{end}}" required
+                        autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    {{with .Form.Errors.Get "password"}}
+                    <label class="text-danger">{{.}}</label>
+                    {{end}}
+                    <input value="{{$uData.Passwd}}" type="password" name="password" id="password"
+                        class="form-control {{with .Form.Errors.Get " password"}} is-invalid {{end}}" required
+                        autocomplete="off">
+                </div>
+                <hr>
+                <input type="submit" class="btn btn-warning" value="submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+{{end}}

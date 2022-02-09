@@ -1,0 +1,59 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+<div class="container">
+  {{$user := index .Data "user"}}
+  <div class="row">
+    <div class="col">
+      <img
+        src="/static/static/images/hello.jpeg"
+        class="img-fluid img-thumbnail mx-auto d-block"
+        alt="Welcome!"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h1 class="mt-4 text-center">Registration Summary</h1>
+      <hr>
+
+      <p>
+        Hello <strong>{{ $user.FirstName }} </strong>, thanks for your registration. 
+        Below you find your registration details. 
+        In addition, we will send you an email with similar content. 
+        Our admin will have to approve your registration request. 
+        You will be notified via email, once this is done.<br>
+      </p>
+
+
+      <table class="table table-striped">
+        <thead></thead>
+        <tbody>
+          <tr>
+            <td>First Name:</td>
+            <td>{{ $user.FirstName }}</td>
+          </tr>
+          <tr>
+            <td>Last Name:</td>
+            <td>{{ $user.LastName }}</td>
+          </tr>
+          <tr>
+            <td>Nick Name:</td>
+            <td>{{ $user.UserName }}</td>
+          </tr>
+          <tr>
+            <td>Phone:</td>
+            <td>{{ $user.Phone }}</td>
+          </tr>
+          <tr>
+            <td>E-Mail:</td>
+            <td>{{ $user.Email }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{{ end }}

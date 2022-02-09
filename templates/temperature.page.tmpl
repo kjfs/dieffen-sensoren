@@ -1,0 +1,46 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+<div class="container">
+
+
+
+        <div class="row">
+        <div class="col">
+            <h1 class="text-center mt-4">Temperature Sensor</h1>
+                <div class="col text-center"> 
+                    <iframe src="https://grafana.iot-data-stream.de/d-solo/mGKQ9VT7k/esp32?orgId=1&from=now-3h&to=now&panelId=13" width="450" height="200" frameborder="0">
+                    </iframe>
+                    <iframe src="https://grafana.iot-data-stream.de/d-solo/mGKQ9VT7k/esp32?orgId=1&from=now-3h&to=now&panelId=4" width="450" height="200" frameborder="0">
+                    </iframe>
+                </div> 
+        </div>
+
+    </div> 
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mt-4">Humidity Sensor</h1>
+                <div class="col text-center"> 
+                    <iframe src="https://grafana.iot-data-stream.de/d-solo/mGKQ9VT7k/esp32?orgId=1&from=now-3h&to=now&panelId=12" width="450" height="200" frameborder="0">
+                    </iframe>
+                    <iframe src="https://grafana.iot-data-stream.de/d-solo/mGKQ9VT7k/esp32?orgId=1&from=now-3h&to=now&panelId=7" width="450" height="200" frameborder="0">
+                    </iframe>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+{{end}}
+
+{{define "js"}}
+
+<script>
+    const token = '{{.CSRFToken}}';
+    let sensorID = 2;
+    lokko(token, sensorID);
+
+</script>
+
+{{end}}

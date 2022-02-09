@@ -1,0 +1,145 @@
+{{template "admin" .}}
+
+{{define "page-title"}}
+Individual Useraccounts View
+{{end}}
+
+{{define "content"}}
+{{$res := index .Data "registration"}}
+{{$source := index .StringMap "src"}}
+
+<div class="col-md-12">
+    Registration data <strong>{{$res.UserName}}</strong>, {{$res.FirstName}} {{$res.LastName}}
+
+    <form method="POST" action="/admin/registrations/{{$source}}/{{$res.Id}}" class="" novalidate>
+        <input type="hidden" name="csrf_token" value="{{.CSRFToken}}">
+
+        <div class="form-group mt-5">
+            <label for="first_name">First name:</label>
+            {{with .Form.Errors.Get "first_name"}}
+            <label class="text-danger">{{.}}</label>
+            {{end}}
+            <input value="{{$res.FirstName}}" type="text" name="first_name" id="first_name"
+                class="form-control {{with .Form.Errors.Get "first_name"}} is-invalid {{end}}" required
+                autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last name:</label>
+            {{with .Form.Errors.Get "last_name"}}
+            <label class="text-danger">{{.}}</label>
+            {{end}}
+            <input value="{{$res.LastName}}" type="text" name="last_name" id="last_name"
+                class="form-control {{with .Form.Errors.Get "last_name"}} is-invalid {{end}}" required
+                autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="email_address">Email address:</label>
+            {{with .Form.Errors.Get "email_address"}}
+            <label class="text-danger">{{.}}</label>
+            {{end}}
+            <input value="{{$res.Email}}" type="email" name="email_address" id="email_address"
+                class="form-control {{with .Form.Errors.Get "email_address"}} is-invalid {{end}}" required
+                autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="phone_number">Phone number:</label>
+            {{with .Form.Errors.Get "phone_number"}}
+            <label class="text-danger">{{.}}</label>
+            {{end}}
+            <input value="{{$res.Phone}}" type="text" name="phone_number" id="phone_number"
+                class="form-control {{with .Form.Errors.Get "phone_number"}} is-invalid {{end}}" required
+                autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="nick_name">User name:</label>
+            {{with .Form.Errors.Get "nick_name"}}
+            <label class="text-danger">{{.}}</label>
+            {{end}}
+            <input value="{{$res.UserName}}" type="text" name="nick_name" id="nick_name"
+                class="form-control {{with .Form.Errors.Get "nick_name"}} is-invalid {{end}}" required
+                autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="created_at">Created at:</label>
+            {{with .Form.Errors.Get "created_at"}}
+            <label class="text-danger">{{.}}</label>
+            {{end}}
+            <input value="{{$res.CreatedAt}}" type="text" name="created_at" id="created_at"
+                class="form-control {{with .Form.Errors.Get "created_at"}} is-invalid {{end}}" required
+                autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="access_level">Access Level:</label>
+            {{with .Form.Errors.Get "access_level"}}
+            <label class="text-danger">{{.}}</label>
+            {{end}}
+            <input value="{{$res.Access_lvl}}" type="text" name="access_level" id="access_level"
+                class="form-control {{with .Form.Errors.Get "access_level"}} is-invalid {{end}}" required
+                autocomplete="off">
+        </div>
+
+        <div class="form-group">
+            <label for="processed">Processed:</label>
+            {{with .Form.Errors.Get "processed"}}
+            <label class="text-danger">{{.}}</label>
+            {{end}}
+            <input value="{{$res.Processed}}" type="text" name="processed" id="processed"
+                class="form-control {{with .Form.Errors.Get "processed"}} is-invalid {{end}}" required
+                autocomplete="off">
+        </div>
+
+        <hr>
+        <div class="float-left">
+            <input type="submit" class="btn btn-primary" value="Save">
+            <a href="/admin/registrations-{{$source}}" class="btn btn-warning">Cancel</a>
+            {{if eq $res.Processed 0}}
+            <a href="#!" class="btn btn-info" onclick="processedRes({{$res.Id}})">Mark as processed!</a>
+            {{end}}
+        </div>
+            <div class="float-right">
+            <a href="#!" class="btn btn-danger" onclick="deleteRes({{$res.Id}})">Delete!</a>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+
+</div>
+{{end}}
+
+{{define "js"}}
+    {{$source := index .StringMap "src"}}
+    <script>
+        function processedRes(id){
+            attention.custom({
+                icon: "warning",
+                msg: "are you sure?",
+                callback: function(result){
+                    if (result !== false) {
+                        window.location.href = "/admin/process-registrations/{{$source}}/" 
+                        + id
+                        + "/do?y={{index .StringMap "year"}}&m={{index .StringMap "month"}}";
+                    }
+                }
+            })
+        }
+
+        function deleteRes(id){
+            attention.custom({
+                icon: "warning",
+                msg: "are you sure?",
+                callback: function(result){
+                    if (result !== false) {
+                        window.location.href = "/admin/delete-registrations/{{$source}}/" 
+                        + id
+                        + "/do?y={{index .StringMap "year"}}&m={{index .StringMap "month"}}";
+                    }
+                }
+            })
+        }
+    </script>
+{{end}}

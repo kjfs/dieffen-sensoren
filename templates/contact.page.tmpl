@@ -1,0 +1,36 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img
+        src="/static/static/images/hero.jpeg"
+        class="img-fluid img-thumbnail mx-auto d-block"
+        alt="Hero"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center mt-4">Who We Are And How To Contact Us</h1>
+        <p class="text-center">
+          <br>Actually, it does not matter who we are.<br> 
+          What counts is that we exist and that we are lucky enough to be able to realize our ideas from time to time.<br>
+          If you have any suggestions about this project, please 
+			    <a href="mailto:dieffesensoren@gmail.com" class="greenText">email us</a>.<br>
+        </p>
+    </div>
+  </div>
+  {{if eq .IsAuthenticated 0}}
+  <div class="row">
+    <div class="col text-center">
+      <a id="register-yourself-button" href="/registration" class="btn btn-warning">Join Us!</a>
+    </div>
+  </div>
+  {{end}}
+</div>
+
+{{end}}

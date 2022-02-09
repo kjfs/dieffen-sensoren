@@ -1,0 +1,57 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img
+        src="/static/static/images/atomic_dessert_1.jpg"
+        class="img-fluid img-thumbnail mx-auto d-block room-image"
+        alt="TEST"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center mt-4">Radioactivity Sensor</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+        ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+        elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+        aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+        est Lorem ipsum dolor sit amet.
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-center">
+      <!-- <button type="button" class="btn btn-success">Register Yourself</button> -->
+      <a id="register-yourself-button" href="#!" class="btn btn-success"
+        >Register Yourself</a
+      >
+    </div>
+  </div>
+</div>
+
+{{ end }}
+
+{{define "js"}}
+
+<script>
+  const token = "{{.CSRFToken}}";
+  let sensorID = 1;
+  lokko(token, sensorID);
+</script>
+
+{{ end }}

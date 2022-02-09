@@ -1,0 +1,4 @@
+add_foreign_key("measurement_kpi", "sensor_id", {"sensors": ["id"]}, {
+    "on_delete": "cascade",
+    "on_update": "cascade",
+})

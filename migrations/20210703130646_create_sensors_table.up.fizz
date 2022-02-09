@@ -1,0 +1,4 @@
+create_table("sensors") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("sensor_name", "string", {})
+}

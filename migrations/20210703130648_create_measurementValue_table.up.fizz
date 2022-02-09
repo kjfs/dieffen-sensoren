@@ -1,0 +1,5 @@
+create_table("measurement_value") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("kpi_id", "integer", {})
+  t.Column("kpi_value", "string", {})
+}

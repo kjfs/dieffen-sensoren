@@ -1,0 +1,84 @@
+{{template "base" .}}
+
+{{define "content"}}
+<div id="main-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+    <ol class="carousel-indicators">
+        <li data-bs-target="#main-carousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#main-carousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#main-carousel" data-bs-slide-to="2"></li>
+        <li data-bs-target="#main-carousel" data-bs-slide-to="3"></li>
+        <li data-bs-target="#main-carousel" data-bs-slide-to="4"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/static/static/images/iot_sensors.jpeg" class="d-block w-100" alt="Iot Sensors">
+            <div class="carousel-caption d-none d-md-block">
+                <h5><strong><span class="textBg">IoT Sensors</span></strong></h5>
+                <p><span class="textBg">Whether it is the operating temperature of a machine or the CO2 content in a
+                        room, IoT sensors produce data that can be analyzed</span></p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/static/images/lora.jpeg" class="d-block w-100" alt="LoRaWan">
+            <div class="carousel-caption d-none d-md-block">
+                <h5><strong><span class="textBg">Long Range Wide Area Network</span></strong></h5>
+                <p><strong><span class="textBg">LoRaWAN enables energy-efficient sending of data over long distances.
+                            This
+                            was developed specifically for the Internet of Things (IoT) and Industrial Internet of
+                            Things (IIoT).</span></strong>
+                </p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/static/images/automation.jpeg" class="d-block w-100" alt="Home Automation">
+            <div class="carousel-caption d-none d-md-block">
+                <h5><strong><span class="textBg">Home Automation</span></strong></h5>
+                <p><strong><span class="textBg">In home automation, individual devices are networked together and
+                            controlled
+                            centrally</span></strong></p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/static/images/server_rack.jpeg" class="d-block w-100" alt="Server Rack">
+            <div class="carousel-caption d-none d-md-block">
+                <h5><strong><span class="textBg">Hardware Infrastructure</span></strong></h5>
+                <p><strong><span class="textBg">Hardware IT infrastructure does a number of things, including allowing
+                            you to connect to your
+                            network and have access to the outside world</span></strong></p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/static/static/images/sensor_green.jpg" class="d-block w-100" alt="LoRaWan">
+            <div class="carousel-caption d-none d-md-block">
+                <h5><strong><span class="textBg">Real-time monitoring of air, soil and water</span></strong></h5>
+                <p><strong><span class="textBg">Up-to-date geodata that provide an overview of
+                            the state of and changes in air, soil, and water are becoming
+                            increasingly important in light of increasing extreme events.</span></strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mt-4">Dieffe 69 IoT</h1>
+            <p>Whether temperature, humidity or gamma radiation values.
+                Dieffe 69 IoT delivers current measured values directly from the center of Berlin.
+                You are welcome to register to retrieve and analyze the measured values at any time.
+            </p>
+        </div>
+    </div>
+    {{if eq .IsAuthenticated 0}}
+    <div class="row">
+        <div class="col text-center">
+            <a href="/registration" class="btn btn-warning">Join Us!</a>
+        </div>
+    </div>
+    {{end}}
+</div>
+
+{{end}}

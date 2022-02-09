@@ -1,0 +1,1 @@
+drop_foreign_key("measurement_value", "measurement_value_measurement_kpi_id_fk")

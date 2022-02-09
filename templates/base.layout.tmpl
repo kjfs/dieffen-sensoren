@@ -1,0 +1,175 @@
+{{define "base"}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <title>Dieffe IoT - Sensors, Attractors and LoRaWAN</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css"> -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker-bs4.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/notie/dist/notie.min.css" />
+  <link rel="stylesheet" type="text/css" href="/static/static/css/styles.css" />
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <div class="orangeText">
+        <img src="/static/static/images/IoT_blackNwhite_3.png" width="30" height="30"
+          class="d-inline-block align-top" alt="IOTSensorBlackNWhite" loading="lazy" />
+        Dieffe IoT
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact" tabindex="-1" aria-disabled="true">Contact</a>
+        </li>
+        <li class="nav-item">
+        {{if eq .IsAuthenticated 1}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSensors" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sensor Data
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownSensors">
+              <li><a class="dropdown-item" href="/user/radioactivity">Radioactivity</a></li>
+              <li><a class="dropdown-item" href="/user/temperature">Temperature</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">
+               Admin
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+              <li> <a class="dropdown-item" href="/admin/dashboard">Dashboard</a></li> 
+              <li> <a class="dropdown-item" href="/user/logout">Logout</a></li> 
+            </ul>
+          </li>
+        {{else}}
+          <a class="nav-link" href="/user/login" tabindex="-1" aria-disabled="true">LogIn</a>
+        {{end}}
+        {{if eq .IsAuthenticated 0}}
+        <li class="nav-item">
+          <a class="nav-link" href="/registration" tabindex="-1" aria-disabled="true">Registration</a>
+        </li>
+        {{end}}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  {{block "content" .}}
+
+  {{ end }}
+
+  <footer class="row my-footer">
+    <div class="row">
+      <div class="col text-center">
+        <strong>Dieffe IoT - Sensors And Attractors</strong><br>
+        Dieffenbachstrasse<br>
+        Kreuzberg, Berlin<br>
+        Germany<br>
+        <a href="mailto:dieffesensoren@gmail.com" class="greenText">dieffesensoren@gmail.com</a>
+      </div>
+  
+      <div class="col">
+      </div>
+  
+      <div class="col text-center">
+        <strong>
+        IoT Streaming Data Pipeline
+        </strong>
+        <br>
+        <strong>
+        Data Analytics
+        </strong>
+      </div>
+    </div>
+  </footer>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js"></script>
+  <script src="https://unpkg.com/notie"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/static/static/js/app.js"></script>
+
+  {{block "js" . }}
+
+  {{ end }}
+
+  <script>
+
+    let attention = Prompt();
+
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        let forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })()
+
+    function notify(msg, msgType) {
+      notie.alert({
+        type: msgType,
+        text: msg,
+      })
+    }
+
+    function notifyModal(title, text, icon, confirmButtonText) {
+      Swal.fire({
+        title: title,
+        html: text,
+        icon: icon,
+        confirmButtonText: confirmButtonText
+      })
+    }
+
+
+    {{with .Error }}
+    notify("{{.}}", "error")
+    {{end}}
+    {{with .Flash }}
+    notify("{{.}}", "success")
+    {{end}}
+    {{with .Warning }}
+    notify("{{.}}", "warning")
+    {{end}}
+
+  </script>
+</body>
+
+</html>
+
+{{ end }}

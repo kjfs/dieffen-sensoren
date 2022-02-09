@@ -1,0 +1,68 @@
+{{template "base" .}}
+{{define "content"}}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img
+        src="/static/static/images/connectivity.jpeg"
+        class="img-fluid img-thumbnail mx-auto d-block"
+        alt="Connectivity"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center mt-4">Why Would You Generate Data And Stream It To The Web?</h1>
+      <p>
+        <br>The answer is simple: It is a spare time project that is a lot fun. We have decided to make IoT data available to a partial public. With time we will add more sensors, which will generate more data that can be queried using this website. 
+        In addition, the local network we run and the devices connected to it will be connected to the gateway of the global IoT wireless network called <strong>"The Things Network"</strong> (TTN for short), which is based on <strong>LoRa</strong> protocoll.
+      </p>
+        Current IoT sensors are currently active or in planning:
+      <ul>
+        <li><strong>DHT-22</strong> is a digital sensor for measuring humidity and temperature. </li>
+        <li><strong>GDK101*</strong> is a semiconductor gamma radiation sensor module optimized for low-level gamma detection up to 200 µSv/h. </li>        
+      </ul>
+      </p>  
+        The data pipeline consists of following components:
+      <ul>
+        <li><strong>InfluxDB</strong> is used as a time series database for real-time data produced by our IoT sensors and other backend applications. </li>
+        <li>Multiple <strong>Telegraf</strong> instances on every host in our network for collecting and sending metrics and events to InfluxDB. </li> 
+        <li><strong>Eclipse Mosquitto</strong> is a MQTT broker using the publish-subscribe mode for messaging IoT data between devices, sensors and servers. <strong>MQTT</strong> is a lightweight (low latency, low bandwith and high reliable) network protocol.</li>
+      </ul>
+      </p>   
+        The following technologies and programming languages were used to create this WebApp:
+      <ul>
+        <li>The front-end was programmed in <strong>GoLang</strong>, <strong>Javascript</strong> and <strong>CSS</strong>.</li>
+        <li>The back-end services were programmed in <strong>GoLang</strong>.</li>
+        <li>The IoT sensors were programmed in <strong>C++</strong>.</li>
+        <li><strong>PostGres</strong> is used as a relational database to store usernames, password and other webapp specific data.</li>
+      </ul>
+      For our WebApp (written in Go 1.16) we used the standard library as well as following external packages:
+      <ul>  
+        <li><strong>Soda CLI</strong> for CRUD operations with database functionality to deal with databases in Go (e.g. to tun migrations and build/execute queries)</li>
+        <li><strong>SCS</strong> implements a session management pattern following the OWASP security guidelines. 
+        <li><strong>Nosurf</strong> is an HTTP package for Go that helps you prevent Cross-Site Request Forgery attacks. 
+        <li><strong>Chi</strong> is a lightweight, idiomatic and composable router for building Go HTTP services.
+        <li><strong>Go Simple Mail</strong> is a simple and efficient package to send emails. 
+        <li><strong>Package pgconn</strong> is a low-level PostgreSQL database driver.
+        <li><strong>Govalidator</strong> is a package of validators and sanitizers for strings, structs and collections.
+        <li><strong>Bcrypt</strong> package implements Provos and Mazièress bcrypt adaptive hashing algorithm.
+      </ul>
+        This project is hosted on a bare metal server, for which we use:
+        <ul> 
+          <li><strong> Proxmox Virtual Environment </strong> as our main virtualization management solution. 
+          <li><strong> pfSense </strong> firewall (a FreeBSD distribution) for unified threat management, load balancing, multi WAN, TLS encryption and more. 
+          <li><strong> Grafana </strong> as our analytics & monitoring solution for our InfluxDB data.
+        </ul> 
+    </div>
+  </div>
+
+  {{if eq .IsAuthenticated 0}}
+  <div class="row">
+    <div class="col text-center">
+      <a id="register-yourself-button" href="/registration" class="btn btn-warning">Join Us!</a>
+    </div>
+  </div>
+  {{end}}
+</div>
+{{end}}

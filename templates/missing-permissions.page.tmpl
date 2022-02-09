@@ -1,0 +1,28 @@
+{{template "base" .}}
+
+{{define "content"}}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <img
+        src="/static/static/images/missing_permissions.jpeg"
+        class="img-fluid img-thumbnail mx-auto d-block"
+        alt="missing permission"
+      />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center mt-4">Missing Permissions</h1>
+        <p class="text-center">
+          <br>Your user account does not have sufficient permission to access this page.<br> 
+          In case of questions, please 
+			    <a href="mailto:dieffesensoren@gmail.com" class="greenText">email us</a>.<br>
+        </p>
+    </div>
+  </div>
+</div>
+
+{{end}}
