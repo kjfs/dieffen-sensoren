@@ -11,7 +11,7 @@ The data pipeline consists of following components:
 - Multiple Telegraf instances on every host in our network for collecting and sending metrics and events to InfluxDB.
 - Eclipse Mosquitto is a MQTT broker using the publish-subscribe mode for messaging IoT data between devices, sensors and servers.
 
-Frontend, Backlend and sensors:
+Frontend, Backlend, sensors and relational data:
 
 - The front-end was programmed in GoLang, Javascript and CSS.
 - The back-end services were programmed in GoLang.
