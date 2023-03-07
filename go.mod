@@ -8,7 +8,7 @@ require (
 	github.com/jackc/pgconn v1.10.1
 	github.com/justinas/nosurf v1.1.1
 	github.com/xhit/go-simple-mail v2.2.2+incompatible
-	golang.org/x/crypto v0.0.0-20220112180741-5e0467b6c7ce
+	golang.org/x/crypto v0.1.0
 )
 
 require (
@@ -18,7 +18,7 @@ require (
 	github.com/jackc/pgproto3/v2 v2.2.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20200714003250-2b9c44734f2b // indirect
 	github.com/jackc/pgx/v4 v4.14.1
-	golang.org/x/text v0.3.6 // indirect
+	golang.org/x/text v0.4.0 // indirect
 )
 
 require (
